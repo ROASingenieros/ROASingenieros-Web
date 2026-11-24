@@ -1,0 +1,318 @@
+/* ==========================================================================
+   ROAS INGENIEROS - ASYMMETRICAL BENTO GRID & DOUBLE-BEZEL SERVICES
+   ========================================================================== */
+
+.services-section {
+  position: relative;
+  padding: 172px 0 80px;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--glass-border-subtle);
+  border-bottom: 1px solid var(--glass-border-subtle);
+  overflow: hidden;
+  transition: background-color var(--transition-normal);
+}
+
+.services-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* SECTION HEADER */
+.section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 56px;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  background: var(--glass-bg-subtle);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--accent-blue);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  box-shadow: var(--glass-highlight);
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.section-description {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ASYMMETRICAL BENTO GRID */
+.services-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+
+/* DOUBLE-BEZEL BENTO CARD (Outer Shell) */
+.service-bento-card {
+  grid-column: span 6;
+  padding: 6px;
+  border-radius: var(--radius-xl);
+  background: var(--glass-bg-subtle);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+  transition: transform 220ms var(--ease-out), 
+              border-color 220ms ease, 
+              box-shadow 220ms ease;
+  will-change: transform;
+}
+
+/* Asymmetry: Top row 7 / 5, Bottom row 5 / 7 */
+.service-bento-card:nth-child(1) {
+  grid-column: span 7;
+}
+
+.service-bento-card:nth-child(2) {
+  grid-column: span 5;
+}
+
+.service-bento-card:nth-child(3) {
+  grid-column: span 5;
+}
+
+.service-bento-card:nth-child(4) {
+  grid-column: span 7;
+}
+
+.service-bento-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-highlight), var(--shadow-lg), 0 0 32px var(--accent-glow);
+}
+
+.service-bento-card:active {
+  transform: scale(0.985);
+}
+
+.service-bento-card:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 4px;
+}
+
+/* INNER CORE (Double-Bezel Architecture) */
+.bento-card-inner {
+  padding: 30px;
+  border-radius: calc(var(--radius-xl) - 6px);
+  background: var(--glass-bg-heavy);
+  backdrop-filter: var(--glass-blur-lg);
+  -webkit-backdrop-filter: var(--glass-blur-lg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-highlight);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+
+.service-bento-card:hover .bento-card-inner {
+  background: var(--glass-bg);
+  border-color: var(--glass-border-hover);
+}
+
+/* CARD TOP: ICON & TITLES */
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.card-icon-wrapper {
+  width: 50px;
+  height: 50px;
+  background: var(--glass-bg-subtle);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent-blue);
+  box-shadow: var(--glass-highlight);
+  transition: transform 200ms var(--ease-out), background 200ms ease;
+}
+
+.service-bento-card:hover .card-icon-wrapper {
+  transform: scale(1.06);
+  background: var(--accent-glow);
+}
+
+.card-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+/* Minimalist Technical Tag */
+.service-tag {
+  display: inline-flex;
+  padding: 3px 10px;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  background: var(--glass-bg-subtle);
+  color: var(--accent-blue);
+  width: fit-content;
+}
+
+.card-short-desc {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+
+/* EXPAND TRIGGER BUTTON */
+.expand-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-blue);
+  margin-top: auto;
+  user-select: none;
+  transition: color 160ms ease, transform 160ms var(--ease-out);
+}
+
+.service-bento-card:hover .expand-trigger {
+  color: var(--text-primary);
+  transform: translateX(2px);
+}
+
+/* EXPANDED ACCORDION (Emil Kowalski Drawer Physics) */
+.card-details-wrapper {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 380ms var(--ease-drawer),
+              opacity 240ms ease;
+}
+
+.card-details-wrapper.show-details {
+  max-height: 2200px;
+  opacity: 1;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--glass-border);
+}
+
+/* Sub-service blocks */
+.sub-service-block {
+  margin-bottom: 20px;
+}
+
+.sub-service-block:last-child {
+  margin-bottom: 0;
+}
+
+.sub-service-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.sub-service-title svg {
+  color: var(--accent-blue);
+  flex-shrink: 0;
+}
+
+.sub-service-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding-left: 26px;
+}
+
+.sub-service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.item-check {
+  color: var(--accent-blue);
+  flex-shrink: 0;
+  margin-top: 3px;
+  opacity: 0.85;
+}
+
+/* Expanded Card Border Glow */
+.card-expanded {
+  border-color: var(--accent-blue);
+  box-shadow: var(--glass-highlight), 0 20px 48px -10px var(--accent-glow);
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVE COLLAPSE)
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .service-bento-card,
+  .service-bento-card:nth-child(1),
+  .service-bento-card:nth-child(2),
+  .service-bento-card:nth-child(3),
+  .service-bento-card:nth-child(4) {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 576px) {
+  .bento-card-inner {
+    padding: 20px;
+  }
+
+  .card-title {
+    font-size: 18px;
+  }
+
+  .card-icon-wrapper {
+    width: 44px;
+    height: 44px;
+  }
+}

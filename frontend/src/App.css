@@ -1,0 +1,374 @@
+/* ==========================================================================
+   ROAS INGENIEROS - PAGE TRANSITIONS
+   ========================================================================== */
+
+/* Page transition wrapper */
+.page-transition-wrap {
+  width: 100%;
+  min-height: 100%;
+}
+
+/* Exit animation — content fades out and slightly scales down */
+.page-transition-wrap.page-exit {
+  animation: pageExit var(--exit-duration, 180ms) var(--ease-out) forwards;
+  pointer-events: none;
+}
+
+/* Enter animation — content fades in and scales up */
+.page-transition-wrap.page-enter {
+  animation: pageEnter var(--enter-duration, 240ms) var(--ease-out) forwards;
+}
+
+/* Idle state - fully visible */
+.page-transition-wrap.page-idle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes pageExit {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.99);
+  }
+}
+
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   PAGE LOADER / PROGRESS BAR
+   ========================================================================== */
+
+.page-loader-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.page-loader-active {
+  opacity: 1;
+}
+
+.page-loader-track {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #1d4ed8, #3b82f6, #60a5fa, #3b82f6);
+  background-size: 200% 100%;
+  animation: 
+    loaderProgress 380ms ease-in-out forwards,
+    loaderShimmer 1s ease-in-out infinite;
+}
+
+@keyframes loaderProgress {
+  0% { width: 0%; }
+  30% { width: 40%; }
+  70% { width: 70%; }
+  100% { width: 100%; }
+}
+
+@keyframes loaderShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ==========================================================================
+   WHATSAPP FLOATING BUTTON
+   ========================================================================== */
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+  pointer-events: none;
+}
+
+.whatsapp-float.wf-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Main floating button */
+.wf-main-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+  transition: transform var(--spring-bounce), box-shadow var(--transition-fast);
+  position: relative;
+  z-index: 2;
+  border: none;
+  cursor: pointer;
+}
+
+.wf-main-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.55);
+}
+
+.wf-main-btn:active {
+  transform: scale(0.95);
+}
+
+/* Pulse ring behind the button */
+.wf-main-btn::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.3);
+  animation: wfPulse 2s ease-out infinite;
+}
+
+@keyframes wfPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Quick options panel */
+/* Quick options panel - Minimalist Glassmorphism */
+/* Quick options panel - Minimalist Glassmorphism */
+.wf-panel {
+  position: absolute;
+  bottom: 72px;
+  right: 0;
+  width: 310px;
+  background: var(--glass-bg-heavy);
+  backdrop-filter: var(--glass-blur-lg);
+  -webkit-backdrop-filter: var(--glass-blur-lg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-highlight), var(--shadow-lg);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(10px) scale(0.96);
+  transform-origin: bottom right;
+  transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.wf-panel.wf-panel-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.wf-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  background: var(--glass-bg-subtle);
+  border-bottom: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.wf-panel-header svg {
+  color: #25d366;
+  flex-shrink: 0;
+}
+
+.wf-panel-header span {
+  flex: 1;
+}
+
+.wf-panel-close {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  background: var(--glass-bg-subtle);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 150ms ease;
+  cursor: pointer;
+}
+
+.wf-panel-close:hover {
+  background: var(--glass-bg-hover);
+  color: var(--text-primary);
+}
+
+.wf-panel-body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-option-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 150ms var(--ease-out);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.wf-option-btn:hover {
+  background: var(--glass-bg-hover);
+  color: var(--accent-blue);
+  transform: translateX(2px);
+}
+
+.wf-option-arrow {
+  color: var(--text-muted);
+  transform: rotate(-90deg);
+  flex-shrink: 0;
+  transition: color 150ms ease;
+}
+
+.wf-option-btn:hover .wf-option-arrow {
+  color: var(--accent-blue);
+}
+
+.wf-panel-footer {
+  padding: 10px 14px;
+  border-top: 1px solid var(--glass-border-subtle);
+}
+
+.wf-direct-link {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all 150ms ease;
+}
+
+.wf-direct-link:hover {
+  color: #25d366;
+  background: rgba(37, 211, 102, 0.08);
+}
+
+/* Floating Cart Button */
+.floating-cart-bag {
+  position: fixed;
+  bottom: 24px;
+  right: 96px;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--glass-bg-heavy);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-highlight), var(--shadow-md);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9998;
+  transition: transform 180ms var(--ease-out), box-shadow 180ms ease;
+}
+
+.floating-cart-bag:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--glass-border-hover);
+}
+
+.floating-cart-bag:active {
+  transform: scale(0.95);
+}
+
+.cart-badge-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: var(--radius-full);
+  background: var(--accent-blue);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--bg-primary);
+}
+
+@media (max-width: 576px) {
+  .wf-panel {
+    width: calc(100vw - 48px);
+    right: 0;
+  }
+
+  .whatsapp-float {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .floating-cart-bag {
+    bottom: 16px;
+    right: 80px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .wf-main-btn {
+    width: 48px;
+    height: 48px;
+  }
+}

@@ -1,0 +1,41 @@
+/* ==========================================================================
+   PARALLAX SECTION — Depth-layered scrolling effect
+   ========================================================================== */
+
+.parallax-section {
+  position: relative;
+  overflow: hidden;
+  /* Establish a 3D perspective container so children move at different rates
+     -- this is the "fake" 3D approach that pairs with JS-driven translateY */
+  transform-style: preserve-3d;
+}
+
+.parallax-content {
+  position: relative;
+  z-index: 2;
+  /* Smooth the parallax movement — don't use ease-out since it's scroll-driven */
+  transition: none;
+}
+
+/* Deep background layer — moves in opposite direction for a dramatic depth effect */
+.parallax-depth-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 50% at 50% 100%,
+    var(--accent-glow) 0%,
+    transparent 70%
+  );
+  opacity: 0.3;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .parallax-content,
+  .parallax-depth-bg {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
